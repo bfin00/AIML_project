@@ -1,0 +1,42 @@
+<html lang="ru">
+<head>
+    <title>
+        AIML-Project
+    </title>
+</head>
+<body>
+<h2>
+    Машинный поиск по статьям
+</h2>
+
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+<form action="" method="post">
+    <h3>Введите статью для поиска/добавления</h3><br/>
+
+    <div>Заголовок статьи</div>
+    <textarea rows="2" cols="60" name="title">{{title}}</textarea><br/>
+
+    <div>Текст статьи</div>
+    <textarea rows="20" cols="60" name="text">{{text}}</textarea><br/>
+    <input type="submit" value="Получить похожие" name="fetch"><br/>
+    <div>
+        <input type="checkbox" name="add">
+        Добавить в каталог
+    </div>
+    <br/>
+</form>
+{% if links %}
+{% for item in links %}
+
+<li>
+    <a href="{{ url_for('article', id=item[1]) }}"> {{item[0]}} </a>
+</li>
+
+{% endfor %}
+{% endif %}
+</body>
+</html>
